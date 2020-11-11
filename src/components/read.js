@@ -13,12 +13,11 @@ export class Read extends React.Component{
         movies: []
     };
 
-    //this method containts axios package to get JSON data from the link provided
-    //if any errors will be found, they'll be displayed in the browsers console 
+    // takes data in from API
     componentDidMount(){
-      axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032')
+      axios.get('http://localhost:4000/api/movies')
       .then((response)=>{
-          this.setState({movies: response.data.Search})
+          this.setState({movies: response.data.movies})
         }
       )
       .catch((error)=>{

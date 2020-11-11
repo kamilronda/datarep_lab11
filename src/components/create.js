@@ -1,5 +1,7 @@
 //imports react to this file
 import React from 'react';
+//imports axios to this file
+import axios from 'axios';
 //imports css file from src folder
 import '../App.css';
 
@@ -44,6 +46,23 @@ export class Create extends React.Component{
     onSubmit(e){
       e.preventDefault();
       alert("Movie: " + this.state.Title + " " + this.state.Year + " " + this.state.Poster);
+
+      // object
+      const newMovie = {
+        title: this.state.Title,
+        year: this.state.Year,
+        poster: this.state.Poster
+      }
+      // takes data from API
+      axios.post('http://localhost:4000/api/movies',newMovie)
+      // gets the data
+      .then((res)=>{
+        console.log(res);
+      })
+      // if no data is recieved then error is caught and displayed
+      .catch((err)=>{
+        console.log(err);
+      });
     }
 
 
