@@ -11,12 +11,12 @@ export class MovieItem extends React.Component {
             //Card displays all the information that is taken from 'read.js' file.
             <div className="App">
                 <Card>
-                    <Card.Header>{this.props.movie.Title}</Card.Header>
+                    <Card.Header>{this.props.movie.title}</Card.Header>
                     <Card.Body>
                         <blockquote className="blockquote mb-0">
-                            <img src={this.props.movie.Poster} width="200" height="200"></img>
+                            <img src={this.props.movie.poster} width="200" height="200"></img>
                             <footer className="blockquote-footer">
-                                <cite>{this.props.movie.Year}</cite>
+                                <cite>{this.props.movie.year}</cite>
                             </footer>
                         </blockquote>
                     </Card.Body>
