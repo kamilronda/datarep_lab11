@@ -1,14 +1,39 @@
 //imports react to this file
 import React from 'react';
+//imports axios to this file
+import axios from 'axios';
 //imports css file from src folder
 import '../App.css';
+//imports css files from react bootstarp
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import e from 'cors';
 
 //exports MovieItem which is used in app.js file
 export class MovieItem extends React.Component {
+    
+    //this constructor allows to delete movies
+    constructor() {
+        super();
+        this.DeleteMovie = this.DeleteMovie.bind(this);
+    }
+
+    //this methood indicates which exact movie is to be deleted by taking the movies ID and deleting the matching one
+    DeleteMovie(e){
+        e.preventDefault();
+        axios.delete('http://localhost:4000/api/movies/'+this.props.movie._id)
+        .then(()=>{
+            this.props.ReloadData();
+        })
+        .catch((err)=>{
+            console.log(err);
+        });
+    }
+
     render() {
         return (
-            //Card displays all the information that is taken from 'read.js' file.
+            //Card displays all the information that is taken from 'read.js' file
+            //Added 'delete' button under each movie which allows to remove a specific title from the database
             <div className="App">
                 <Card>
                     <Card.Header>{this.props.movie.title}</Card.Header>
@@ -20,6 +45,7 @@ export class MovieItem extends React.Component {
                             </footer>
                         </blockquote>
                     </Card.Body>
+                    <Button variant="danger" onClick={this.DeleteMovie}>Delete</Button>
                 </Card>
 
             </div>

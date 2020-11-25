@@ -90,6 +90,15 @@ app.get('/api/movies/:id', (req, res)=>{
   })
 })
 
+//deletes a specific movie with it's details from the database
+app.delete('/api/movies/:id', (req, res)=>{
+  console.log(req.params.id);
+
+  MovieModel.findByIdAndDelete({_id:req.params.id}, (err, data)=>{
+    res.send(data);
+  })
+})
+
 // returns the movies
 app.post('/api/movies', (req, res)=>{
   console.log('Movie Recieved!');
