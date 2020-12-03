@@ -2,6 +2,8 @@
 import React from 'react';
 //imports axios to this file
 import axios from 'axios';
+// imports Link which allows to change the URL of the application
+import {Link} from 'react-router-dom';
 //imports css file from src folder
 import '../App.css';
 //imports css files from react bootstarp
@@ -44,10 +46,10 @@ export class MovieItem extends React.Component {
                                 <cite>{this.props.movie.year}</cite>
                             </footer>
                         </blockquote>
+                        <Button variant="danger" onClick={this.DeleteMovie}>Delete</Button>
+                        <Link to={'/edit/'+this.props.movie._id} className="btn btn-primary ml-3">Edit</Link>
                     </Card.Body>
-                    <Button variant="danger" onClick={this.DeleteMovie}>Delete</Button>
                 </Card>
-
             </div>
         );
     }
